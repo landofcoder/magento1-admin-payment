@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * IDEALIAGroup srl
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@idealiagroup.com so we can send you a copy immediately.
+ *
+ * @category   Lof
+ * @package    Lof_AdminPayment
+ * @copyright  Copyright (c) 2014 IDEALIAGroup srl (http://www.idealiagroup.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+	<modules>
+		<Lof_AdminPayment>
+			<version>1.2.5</version>
+		</Lof_AdminPayment>
+	</modules>
+
+	<global>
+		<helpers>
+			<lof_adminpayment>
+				<class>Lof_AdminPayment_Helper</class>
+			</lof_adminpayment>
+		</helpers>
+
+		<blocks>
+			<lof_adminpayment>
+				<class>Lof_AdminPayment_Block</class>
+			</lof_adminpayment>
+		</blocks>
+
+		<models>
+			<lof_adminpayment>
+				<class>Lof_AdminPayment_Model</class>
+				<resourceModel>lof_adminpayment_mysql4</resourceModel>
+			</lof_adminpayment>
+
+			<lof_adminpayment_mysql4>
+				<class>Lof_AdminPayment_Model_Mysql4</class>
+				<entities>
+					<local>
+						<table>lof_adminpayment_local</table>
+					</local>
+					<foreign>
+						<table>lof_adminpayment_foreign</table>
+					</foreign>
+				</entities>
+			</lof_adminpayment_mysql4>
+		</models>
+
+		<resources>
+			<lof_adminpayment_setup>
+				<setup>
+					<module>Lof_AdminPayment</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</lof_adminpayment_setup>
+
+			<lof_adminpayment_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</lof_adminpayment_write>
+
+			<lof_adminpayment_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</lof_adminpayment_read>
+		</resources>
+
+		<sales>
+			<quote>
+				<totals>
+					<lof_adminpayment>
+						<class>lof_adminpayment/quote_total</class>
+						<after>tax</after>
+						<before>grand_total</before>
+					</lof_adminpayment>
+					<lof_adminpayment_tax>
+						<class>lof_adminpayment/quote_tax</class>
+						<after>tax</after>
+						<before>grand_total</before>
+					</lof_adminpayment_tax>
+				</totals>
+			</quote>
+			<order>
+				<totals>
+					<lof_adminpayment>
+						<class>lof_adminpayment/quote_total</class>
+						<after>tax</after>
+						<before>grand_total</before>
+					</lof_adminpayment>
+					<lof_adminpayment_tax>
+						<class>lof_adminpayment/quote_tax</class>
+						<after>tax</after>
+						<before>grand_total</before>
+					</lof_adminpayment_tax>
+				</totals>
+			</order>
+			<order_invoice>
+                <totals>
+                    <lof_adminpayment>
+                       <class>lof_adminpayment/order_total</class>
+						<after>tax</after>
+						<before>grand_total</before>
+                    </lof_adminpayment>
+                </totals>
+            </order_invoice>           
+            <order_creditmemo>
+                <totals>
+                    <lof_adminpayment>
+                       <class>lof_adminpayment/creditmemo_total</class>
+						<after>tax</after>
+						<before>grand_total</before>
+                    </lof_adminpayment>
+ 					<lof_adminpayment_tax>
+						<class>lof_adminpayment/creditmemo_tax</class>
+						<after>tax</after>
+						<before>grand_total</before>
+					</lof_adminpayment_tax>
+               </totals>
+            </order_creditmemo>
+			<totals_sort>
+			    <lof_adminpayment>15</lof_adminpayment>
+			</totals_sort>
+		</sales>
+		
+		<fieldsets>
+			<sales_convert_quote>
+                <lof_adminpayment><to_order>*</to_order></lof_adminpayment>
+                <lof_base_adminpayment><to_order>*</to_order></lof_base_adminpayment>			
+                <lof_base_adminpayment_incl_tax><to_order>*</to_order></lof_base_adminpayment_incl_tax>
+                <lof_adminpayment_incl_tax><to_order>*</to_order></lof_adminpayment_incl_tax>			
+			</sales_convert_quote>
+			<sales_convert_order>
+                <lof_adminpayment><to_quote>*</to_quote></lof_adminpayment>
+                <lof_base_adminpayment><to_quote>*</to_quote></lof_base_adminpayment>			
+                <lof_base_adminpayment_incl_tax><to_quote>*</to_quote></lof_base_adminpayment_incl_tax>
+                <lof_adminpayment_incl_tax><to_quote>*</to_quote></lof_adminpayment_incl_tax>			
+			</sales_convert_order>
+			<sales_convert_order_address>
+                <lof_adminpayment><to_quote_address>*</to_quote_address></lof_adminpayment>
+                <lof_base_adminpayment><to_quote_address>*</to_quote_address></lof_base_adminpayment>			
+                <lof_base_adminpayment_incl_tax><to_quote>*</to_quote></lof_base_adminpayment_incl_tax>
+                <lof_adminpayment_incl_tax><to_quote>*</to_quote></lof_adminpayment_incl_tax>			
+			</sales_convert_order_address>
+            <sales_convert_quote_address>
+                <lof_adminpayment><to_quote>*</to_quote><to_order>*</to_order></lof_adminpayment>
+                <lof_base_adminpayment><to_quote>*</to_quote><to_order>*</to_order></lof_base_adminpayment>
+                <lof_base_adminpayment_incl_tax><to_quote>*</to_quote></lof_base_adminpayment_incl_tax>
+                <lof_adminpayment_incl_tax><to_quote>*</to_quote></lof_adminpayment_incl_tax>			
+            </sales_convert_quote_address>
+        </fieldsets>
+        
+        <pdf>
+			<totals>
+				<lof_adminpayment translate="title">
+					<title>Admin Payment</title>
+					<source_field>lof_adminpayment</source_field>
+					<model>lof_adminpayment/order_pdf_total_default</model>
+					<font_size>7</font_size>
+					<display_zero>0</display_zero>
+					<sort_order>251</sort_order>
+				</lof_adminpayment>
+			</totals>
+		</pdf>
+	</global>
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<lof_adminpayment>
+					<files>
+						<default>Lof_AdminPayment.csv</default>
+					</files>
+				</lof_adminpayment>
+			</modules>
+		</translate>
+		<menu>
+			<sales>
+				<children>
+					<lof_adminpayment translate="title" module="lof_adminpayment">
+						<title>Admin Payment prices</title>
+						<sort_order>1000</sort_order>
+						<children>
+							<lof_adminpayment_local translate="title" module="lof_adminpayment">
+								<title>Local destinations</title>
+								<action>adminhtml/adminpayment_local</action>
+								<sort_order>10</sort_order>
+							</lof_adminpayment_local>
+							<lof_adminpayment_foreign translate="title" module="lof_adminpayment">
+								<title>Foreign destinations</title>
+								<action>adminhtml/adminpayment_foreign</action>
+								<sort_order>20</sort_order>
+							</lof_adminpayment_foreign>
+						</children>
+                    </lof_adminpayment>
+				</children>
+			</sales>
+        </menu>		
+		<layout>
+			<updates>
+				<lof_adminpayment>
+					<file>lof_adminpayment.xml</file>
+				</lof_adminpayment>
+			</updates>
+		</layout>
+		<translate>
+			<modules>
+				<lof_adminpayment>
+					<files>
+						<default>Lof_AdminPayment.csv</default>
+					</files>
+				</lof_adminpayment>
+			</modules>
+		</translate>
+	</adminhtml>
+	    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <lof_adminpayment before="Mage_Adminhtml">Lof_AdminPayment_Adminhtml</lof_adminpayment>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+	<default>
+		<lof_adminpayment>
+			<general>
+				<enabled>1</enabled>
+			</general>
+		</lof_adminpayment>
+		<payment>
+			<lof_adminpayment>
+				<active>1</active>
+				<model>lof_adminpayment/adminpayment</model>
+				<order_status>pending</order_status>
+				<title>Admin Payment</title>
+				<payment_action>authorize</payment_action>
+				<allowspecific>0</allowspecific>
+				<specificcountry>EN</specificcountry>
+				<calc_including_shipping>0</calc_including_shipping>
+				<calc_including_taxes>1</calc_including_taxes>
+			</lof_adminpayment>
+		</payment>
+		<tax>
+			<classes>
+				<lof_adminpayment_taxclass></lof_adminpayment_taxclass>
+			</classes>
+			<calculation>
+				<lof_adminpayment_includes_tax>1</lof_adminpayment_includes_tax>
+			</calculation>
+			<display>
+				<lof_adminpayment>2</lof_adminpayment>
+			</display>
+		</tax>
+		<sales>
+			<totals_sort>
+				<lof_adminpayment>1000</lof_adminpayment>
+				<lof_adminpayment_tax>1001</lof_adminpayment_tax>
+			</totals_sort>
+		</sales>
+	</default>
+	
+</config>

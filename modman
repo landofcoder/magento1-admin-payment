@@ -1,0 +1,5 @@
+app/code/community/Lof/AdminPayment   app/code/community/Lof/AdminPayment
+app/design/adminhtml/default/default/layout/lof_adminpayment.xml  app/design/adminhtml/default/default/layout/lof_adminpayment.xml
+app/design/adminhtml/default/default/template/lof_adminpayment    app/design/adminhtml/default/default/template/lof_adminpayment
+app/etc/modules/Lof_AdminPayment.xml  app/etc/modules/Lof_AdminPayment.xml
+app/locale/it_IT/Lof_AdminPayment.csv app/locale/it_IT/Lof_AdminPayment.csv
